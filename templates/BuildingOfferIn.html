@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html class="k-webkit k-webkit80" lang="he-IL">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ביטוח מבנה</title>
+</head>
+<body>
+<section class="container">
+    <header class="">
+        <div id="uiDivHeader" class="container">
+            <div class="col-sm-5 col-md-7 ">
+                <a class="logo_calc pull-right mk-aweb-menu-screen-reader-navigation-focus"
+                   href="/Home/Index" title="לדף הבית"
+                   aria-label="מחשבון ביטוח דירה לוגו">
+                </a>
+            </div>
+            <div class="hidden-xs mof-logos col-sm-3 col-md-2 full-width padding-top-20 padding-left-30" role="group"
+                 aria-label="רשתות חברתיות">
+                <a href="https://www.facebook.com/Israeli.Ministry.of.Finance"
+                   style="text-decoration:none;" title="פייסבוק" target="_blank"
+                   class="mk-aweb-menu-screen-reader-navigation-focus">
+                    <div class="facebook-white">
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/company/israel-ministry-of-finance" style="text-decoration:none;"
+                   title="לינקדין" target="_blank" class="mk-aweb-menu-screen-reader-navigation-focus">
+                    <div class="linkedin-white">
+                    </div>
+                </a>
+                <a href="https://twitter.com/israel_mof" style="text-decoration:none;" title="טוויטר" target="_blank"
+                   class="mk-aweb-menu-screen-reader-navigation-focus">
+                    <div class="twitter-white">
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/user/mofisrael/featured" style="text-decoration:none;" title="יוטיוב"
+                   target="_blank" class="mk-aweb-menu-screen-reader-navigation-focus">
+                    <div class="youtube-white">
+                    </div>
+                </a>
+            </div>
+            <div class="hidden-xs col-md-3 col-sm-4 not-padding-left">
+                <a
+                        class="logo_shuk_hahon pull-left mk-aweb-menu-screen-reader-navigation-focus"
+                        href="http://www.mof.gov.il/hon" title="לאתר רשות שוק ההון ביטוח וחסכון" target="_new">
+                </a>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class=" container " role="main">
+            <img class="col-sm-12 col-xs-12 img-responsive full-width"
+                 src="../Content/Images/ParametersPage/Structure.gif" alt="">
+            <!--<label class="showMinScreen headerText">
+            </label>-->
+            <h1
+                    class="hiddenText mk-aweb-menu-screen-reader-navigation-focus">ביטוח מבנה</h1>
+            <div class="clear col-sm-12 col-xs-12  full-width  bkg_Structure ">
+                <form id="uiFormParameters" class="  center-block border " data-role="validator"
+                      novalidate="novalidate">
+                    <div class="col-sm-12 col-xs-12 ">
+                        <p class="required">* חובה למלא את כל השדות</p>
+                    </div>
+                    <div class="col-sm-12 full-width ">
+                        <label class="col-sm-5" for="uiDdlStructureAndFloorType">סוג מבנה
+                            וקומה</label>
+                        <div class="col-sm-5 container ">
+                            <div class="col-sm-8 not-padding-right-xs">
+<span class="k-widget k-dropdown k-header k-rtl"
+      role="combobox" aria-haspopup="true"
+      aria-expanded="false" tabindex="0"
+      aria-owns="uiDdlStructureAndFloorType_listbox"
+      aria-disabled="false" aria-readonly="false"
+      aria-busy="false"
+      aria-activedescendant="uiDdlStructureAndFloorType_option_selected"
+      aria-label="סוג מבנה וקומה" style="">
+<span
+        class="k-dropdown-wrap k-state-default">
+<span
+        class="k-input">בחר סוג מבנה וקומה</span>
+<span class="k-select">
+<span
+        class="k-icon k-i-arrow-s">select</span>
+</span>
+</span>
+<input class="k-rtl"
+       id="uiDdlStructureAndFloorType"
+       data-bind="value: storeParametersItems.MTYPE"
+       name="MTYPE"
+       required="" type="text"
+       data-role="dropdownlist"
+       style="display: none;">
+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="seperator">
+                    </div>
+                    <div id="uiDivMidFloor" data-bind="visible: storeParametersItems.showFloor" style="display: none;">
+                        <div class="col-sm-12 full-width">
+                            <label class="col-sm-5" for="uiTxtNMidFloor">קומת
+                                ביניים</label>
+                            <div class="col-sm-5 container ">
+                                <div class="col-sm-8 not-padding-right-xs">
+<span class="k-widget k-numerictextbox k-rtl"
+      style="">
+<span
+        class="k-numeric-wrap k-state-default">
+<input type="text"
+       class="k-formatted-value k-rtl k-input"
+       tabindex="0"
+       placeholder="הזן קומה"
+       aria-disabled="false"
+       aria-readonly="false"
+       style="display: inline-block;">
+<input
+        id="uiTxtNMidFloor" class="k-rtl  k-input" data-requiredmidfloor-msg=""
+        data-bind="value: storeParametersItems.MTYPE_PARAMETER"
+        name="MultipliesParameterMTYPE" type="text" placeholder="הזן קומה" maxlength="4"
+        data-role="numerictextbox" role="spinbutton" aria-valuemin="0"
+        aria-valuemax="9999" aria-valuenow="" aria-disabled="false"
+        aria-readonly="false" style="display: none;">
+<span class="k-select">
+<span
+        class="k-link">
+<span class="k-icon k-i-arrow-n"
+      title="הגדל">הגדל</span>
+</span>
+<span class="k-link">
+<span
+        class="k-icon k-i-arrow-s" title="הקטן">הקטן</span>
+</span>
+</span>
+</span>
+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="seperator">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 full-width">
+                        <label class="col-sm-5" for="uiTxtNAge">גיל המבנה (בשנים)</label>
+                        <div class="col-sm-6 col-md-5 container  ">
+                            <div class="col-sm-8  not-padding-right-xs">
+<span class="k-widget k-numerictextbox k-rtl"
+      style="">
+<span
+        class="k-numeric-wrap k-state-default">
+<input type="text"
+       class="k-formatted-value k-rtl k-input"
+       tabindex="0"
+       placeholder="הזן גיל המבנה (בשנים)"
+       aria-disabled="false"
+       aria-readonly="false"
+       style="display: inline-block;">
+<input
+        id="uiTxtNAge" class="k-rtl  k-input"
+        data-bind="value: storeParametersItems.MAGE_PARAMETER"
+        name="MultipliesParameterMAGE" title="יש להזין מספרים שלמים בלבד" required=""
+        maxlength="3" type="text" placeholder="הזן גיל המבנה (בשנים)"
+        data-role="numerictextbox" role="spinbutton" aria-valuemin="0" aria-valuemax="999"
+        aria-valuenow="" aria-disabled="false" aria-readonly="false" style="display: none;">
+<span
+        class="k-select">
+<span class="k-link">
+<span class="k-icon k-i-arrow-n" title="הגדל">הגדל</span>
+</span>
+<span
+        class="k-link">
+<span class="k-icon k-i-arrow-s"
+      title="הקטן">הקטן</span>
+</span>
+</span>
+</span>
+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="seperator">
+                    </div>
+                    <div>
+                        <div class="col-sm-12 full-width " id="uiDivTxtNStructureInsuranceSum">
+                            <label class="col-sm-5"
+                                   for="uiTxtNStructureInsuranceSum">סכום
+                                ביטוח המבנה בש''ח</label>
+                            <div class="col-sm-6 col-md-5 full-width ">
+                                <div class="col-sm-10 col-md-9  not-padding-right-xs col-xs-11">
+<span
+        class="k-widget k-numerictextbox k-rtl" style="">
+<span
+        class="k-numeric-wrap k-state-default">
+<input type="text"
+       class="k-formatted-value k-rtl k-input"
+       tabindex="0"
+       placeholder="הזן סכום ביטוח המבנה בש''ח"
+       aria-disabled="false"
+       aria-readonly="false"
+       style="display: inline-block;">
+<input
+        class="k-rtl  k-input" id="uiTxtNStructureInsuranceSum" name="MSUM"
+        data-bind="value: storeParametersItems.MSUM" type="text"
+        data-greaterthanzero-msg="יש להזין סכום ביטוח גדול מאפס"
+        placeholder="הזן סכום ביטוח המבנה בש''ח" data-role="numerictextbox"
+        role="spinbutton" aria-valuemin="0" aria-valuemax="999999999" aria-valuenow=""
+        aria-disabled="false" aria-readonly="false" style="display: none;">
+<span
+        class="k-select">
+<span class="k-link">
+<span class="k-icon k-i-arrow-n"
+      title="הגדל">הגדל</span>
+</span>
+<span
+        class="k-link">
+<span class="k-icon k-i-arrow-s" title="הקטן">הקטן</span>
+</span>
+</span>
+</span>
+</span>
+                                </div>
+                                <div class="col-sm-1 col-md-1  hidden-xs full-width">
+                                    <a
+                                            class="icon-tooltip question questiontext mk-aweb-menu-screen-reader-navigation-focus"
+                                            data-toggle="tooltip" data-placement="top"
+                                            data-original-title="סכום ביטוח המבנה משקף את עלות בניית הדירה (ללא ערך קרקע), ומשפיע על מחיר הביטוח. מומלץ להיוועץ עם גורם מקצועי לצורך קביעת סכום הביטוח."
+                                            tabindex="0"
+                                            aria-label=" הסבר נוסף סכום ביטוח המבנה משקף את עלות בניית הדירה (ללא ערך קרקע), ומשפיע על מחיר הביטוח. מומלץ להיוועץ עם גורם מקצועי לצורך קביעת סכום הביטוח."
+                                            role="button">?</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="seperator">
+                        </div>
+                        <div class="col-sm-12 full-width  ">
+                            <label
+                                    class="col-xs-12 hidden-md hidden-lg hidden-sm CenterLabel"
+                                    for="uiDdlFluidDangerCoverage">כיסוי לנזקי מים</label>
+                            <label
+                                    class="col-sm-5 hidden-xs centerAlign" for="uiDdlFluidDangerCoverage">כיסוי לנזקי
+                                מים</label>
+                            <div class="col-sm-6 col-md-5 full-width">
+                                <div class="col-sm-10 col-md-9 not-padding-right-xs">
+<span
+        class="k-widget k-dropdown k-header k-rtl" role="combobox" aria-haspopup="true"
+        aria-expanded="false" tabindex="0" aria-owns="uiDdlFluidDangerCoverage_listbox"
+        aria-disabled="false" aria-readonly="false" aria-busy="false"
+        aria-activedescendant="uiDdlFluidDangerCoverage_option_selected"
+        aria-label="כיסוי לנזקי מים" style="">
+<span
+        class="k-dropdown-wrap k-state-default">
+<span class="k-input">שרברב מטעם חברת הביטוח</span>
+<span
+        class="k-select">
+<span
+        class="k-icon k-i-arrow-s">select</span>
+</span>
+</span>
+<input class="k-rtl "
+       id="uiDdlFluidDangerCoverage"
+       data-bind="value: storeParametersItems.MAIM"
+       name="MAIM"
+       data-mortgmaincomb-msg=""
+       required=""
+       type="text"
+       data-role="dropdownlist"
+       style="display: none;">
+</span>
+                                </div>
+                                <div class="col-sm-1 col-md-1 hidden-xs full-width">
+                                    <a
+                                            class="icon-tooltip question questiontext k-rtl mk-aweb-menu-screen-reader-navigation-focus"
+                                            data-toggle="tooltip" data-placement="top" data-html="true"
+                                            data-original-title="לתשומת לבך, כיסוי לנזקי מים באמצעות שרברב לבחירת המבוטח, עשוי להיות יקר יותר מכיסוי לנזקי מים באמצעות שרברב מטעם חברת הביטוח."
+                                            tabindex="0"
+                                            aria-label=" הסבר נוסף לתשומת לבך, כיסוי לנזקי מים באמצעות שרברב לבחירת המבוטח, עשוי להיות יקר יותר מכיסוי לנזקי מים באמצעות שרברב מטעם חברת הביטוח."
+                                            role="button">?</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="seperator">
+                        </div>
+                        <div>
+                            <div class="col-sm-12  full-width">
+                                <label class="col-sm-5 largeLabel"
+                                       for="uiDdlNumberOfStructureClaims">האם הוגשו
+                                    תביעות בשנים האחרונות בביטוח מבנה?<span style="font-size:13px">(למעט בגין כיסוי לנזקי מים)</span>
+                                </label>
+                                <div class="col-sm-5 full-width ">
+                                    <div class="col-sm-9 not-padding-right-xs">
+<span
+        class="k-widget k-dropdown k-header k-rtl" role="combobox"
+        aria-haspopup="true" aria-expanded="false" tabindex="0"
+        aria-owns="uiDdlNumberOfStructureClaims_listbox" aria-disabled="false"
+        aria-readonly="false" aria-busy="false"
+        aria-activedescendant="uiDdlNumberOfStructureClaims_option_selected"
+        aria-label="האם הוגשו תביעות בשנים האחרונות בביטוח מבנה? (למעט בגין כיסוי לנזקי מים)"
+        style="">
+<span class="k-dropdown-wrap k-state-default">
+<span
+        class="k-input">בחר תביעות</span>
+<span class="k-select">
+<span
+        class="k-icon k-i-arrow-s">select</span>
+</span>
+</span>
+<input class="k-rtl "
+       id="uiDdlNumberOfStructureClaims"
+       data-bind="value: storeParametersItems.MTVIA"
+       name="MTVIA"
+       required=""
+       type="text"
+       data-role="dropdownlist"
+       style="display: none;">
+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="seperator">
+                        </div>
+                        <div>
+                            <div class="col-sm-12  full-width">
+                                <label
+                                        class="col-xs-12 hidden-md hidden-lg hidden-sm CenterLabel" for="uiDdlMortgage">האם
+                                    הביטוח נרכש לצורך משכנתה?</label>
+                                <label class="col-sm-5 hidden-xs centerAlign"
+                                       for="uiDdlMortgage">האם הביטוח נרכש לצורך
+                                    משכנתה?</label>
+                                <div class="col-sm-6 col-md-5 full-width">
+                                    <div class="col-sm-10 col-md-9 not-padding-right-xs">
+<span
+        class="k-widget k-dropdown k-header k-rtl" role="combobox"
+        aria-haspopup="true" aria-expanded="false" tabindex="0"
+        aria-owns="uiDdlMortgage_listbox" aria-disabled="false"
+        aria-readonly="false" aria-busy="false"
+        aria-activedescendant="uiDdlMortgage_option_selected"
+        aria-label="האם הביטוח נרכש לצורך משכנתה?" style="">
+<span
+        class="k-dropdown-wrap k-state-default">
+<span
+        class="k-input">בחר</span>
+<span class="k-select">
+<span
+        class="k-icon k-i-arrow-s">select</span>
+</span>
+</span>
+<input class="k-rtl "
+       id="uiDdlMortgage"
+       data-bind="value: storeParametersItems.MASHKANTA"
+       name="MASHKANTA"
+       required=""
+       type="text"
+       data-role="dropdownlist"
+       style="display: none;">
+</span>
+                                    </div>
+                                    <div class="col-sm-1 col-md-1 hidden-xs full-width">
+                                        <a
+                                                class="icon-tooltip question questiontext k-rtl mk-aweb-menu-screen-reader-navigation-focus"
+                                                data-toggle="tooltip" data-placement="top" data-html="true"
+                                                data-original-title="הבנק עשוי לדרוש ביטוח מבנה בעת מתן משכנתה (הלוואה לדיור)."
+                                                tabindex="0"
+                                                aria-label=" הסבר נוסף הבנק עשוי לדרוש ביטוח מבנה בעת מתן משכנתה (הלוואה לדיור)."
+                                                role="button">?</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5 full-width ">
+                                    <div class="col-sm-9 not-padding-right-xs">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="seperator">
+                        </div>
+                    </div>
+                    <div id="uiDivCaptcha" class="hide">
+                        <div class="col-sm-12 col-xs-12 full-width">
+                            <label class="col-sm-5 col-xs-12 " for="captha">לצורכי
+                                אבטחה, אנא השב/י על התרגיל:</label>
+                            <div class="col-sm-7 col-xs-12 container">
+                                <div id="uiDivCaptchaImg">
+                                    <div class="col-sm-5 col-md-4 col-xs-12 not-padding-left">
+                                        <input id="uiTxtCaptcha"
+                                               name="input"
+                                               type="text"
+                                               placeholder="הזן תשובה"
+                                               data-role="validator">
+                                    </div>
+                                    <div class="col-sm-3 full-width col-xs-12">
+                                        <img id="uiImgCaptcha"
+                                             src="/Captcha/CaptchaImage?t=02%2F25%2F2020%2018%3A32%3A41"
+                                             alt="יש להזין את התשובה לתרגיל שלפניך">
+                                    </div>
+                                    <div class="col-sm-3 col-xs-12">
+                                        <a onclick="RefreshCaptcha()"
+                                           href="#uiDivCaptchaImg">החלף תרגיל</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row_button clear">
+                        <button type="button" id="uiBtnClear" class="bluebuttontext clean radius">נקה</button>
+                        <button type="button" id="uiBtnCalculate" data-bind="click: onCalculate"
+                                class="pull-left btn  button bluebuttontext radius">&lt; לחץ להשוואה
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer class="clear container">
+        <p class="col-xs-5 col-sm-5">כל הזכויות שמורות לרשות שוק ההון 2015</p>
+        <ul class="col-xs-2 col-sm-2  mk-aweb-menu-screen-reader-navigation-focus">
+            <li class="centered">
+                <a href="/Home/TechnicalSupport" class="mk-aweb-menu-screen-reader-navigation-focus">צור
+                    קשר</a>
+            </li>
+        </ul>
+        <p class=" col-xs-5 col-sm-5 left">
+            <img src="/Content/Images/LayoutPage/logo_agaf.gif"
+                 alt="">
+            <span>&nbsp;</span>האתר פותח על-ידי האגף למערכות מידע, משרד האוצר
+        </p>
+    </footer>
+</section>
+<div class="k-list-container k-popup k-group k-reset k-rtl" id="uiDdlStructureAndFloorType-list" data-role="popup"
+     style="position: absolute; height: auto; display: none;">
+    <ul class="k-list k-reset" tabindex="-1" role="listbox" aria-hidden="true" id="uiDdlStructureAndFloorType_listbox"
+        aria-live="off" style="overflow: auto;">
+        <li tabindex="-1" role="option" class="k-item k-state-selected k-state-focused"
+            id="uiDdlStructureAndFloorType_option_selected" aria-selected="true">בחר סוג מבנה וקומה
+        </li>
+        <li tabindex="-1" role="option" class="k-item">בית פרטי</li>
+        <li tabindex="-1" role="option" class="k-item">בית דו משפחתי</li>
+        <li tabindex="-1" role="option" class="k-item">בניין משותף - קומת קרקע</li>
+        <li tabindex="-1" role="option" class="k-item">בניין משותף - קומת ביניים</li>
+        <li tabindex="-1" role="option" class="k-item">בניין משותף - קומה אחרונה</li>
+        <li tabindex="-1" role="option" class="k-item">בניין משותף - קומת גג (פנטהאוז)</li>
+    </ul>
+</div>
+<div class="k-list-container k-popup k-group k-reset k-rtl" id="uiDdlFluidDangerCoverage-list" data-role="popup"
+     style="position: absolute; height: auto; display: none;">
+    <ul class="k-list k-reset" tabindex="-1" role="listbox" aria-hidden="true" id="uiDdlFluidDangerCoverage_listbox"
+        aria-live="off" style="overflow: auto;">
+        <li tabindex="-1" role="option" class="k-item k-state-selected k-state-focused"
+            id="uiDdlFluidDangerCoverage_option_selected" aria-selected="true">שרברב מטעם חברת הביטוח
+        </li>
+        <li tabindex="-1" role="option" class="k-item">שרברב לבחירת המבוטח</li>
+        <li tabindex="-1" role="option" class="k-item">ללא כיסוי כלל</li>
+    </ul>
+</div>
+<div class="k-list-container k-popup k-group k-reset k-rtl" id="uiDdlMortgage-list" data-role="popup"
+     style="position: absolute; height: auto; display: none;">
+    <ul class="k-list k-reset" tabindex="-1" role="listbox" aria-hidden="true" id="uiDdlMortgage_listbox"
+        aria-live="off" style="overflow: auto;">
+        <li tabindex="-1" role="option" class="k-item k-state-selected k-state-focused"
+            id="uiDdlMortgage_option_selected" aria-selected="true">בחר
+        </li>
+        <li tabindex="-1" role="option" class="k-item">לא</li>
+        <li tabindex="-1" role="option" class="k-item">כן</li>
+    </ul>
+</div>
+<div class="k-list-container k-popup k-group k-reset k-rtl" id="uiDdlNumberOfStructureClaims-list" data-role="popup"
+     style="position: absolute; height: auto; display: none;">
+    <ul class="k-list k-reset" tabindex="-1" role="listbox" aria-hidden="true" id="uiDdlNumberOfStructureClaims_listbox"
+        aria-live="off" style="overflow: auto;">
+        <li tabindex="-1" role="option" class="k-item k-state-selected k-state-focused"
+            id="uiDdlNumberOfStructureClaims_option_selected" aria-selected="true">בחר תביעות
+        </li>
+        <li tabindex="-1" role="option" class="k-item">ללא תביעות</li>
+        <li tabindex="-1" role="option" class="k-item">תביעה אחת - בשנה האחרונה</li>
+        <li tabindex="-1" role="option" class="k-item">תביעה אחת - לפני שנה</li>
+        <li tabindex="-1" role="option" class="k-item">תביעה אחת - לפני שנתיים</li>
+        <li tabindex="-1" role="option" class="k-item">שתי תביעות ויותר- בשלוש השנים האחרונות</li>
+    </ul>
+</div>
+</body>
+</html>

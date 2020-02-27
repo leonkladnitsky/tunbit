@@ -1,0 +1,8 @@
+Django==2.2.9
+django-extensions==2.2.5
+djangorestframework==3.11
+django-debug-toolbar==2.1
+django-cors-headers==3.2.1
+selenium==3.141.0
+pytz==2019.3
+

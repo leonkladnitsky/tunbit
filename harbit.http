@@ -1,0 +1,57 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection) or
+# paste cURL into the file and request will be converted to HTTP Request format.
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+
+### Content insurance proposals
+POST http://127.0.0.1:9999/content/
+Content-Type: application/json
+
+{
+  "c_type_floor": 3,
+  "c_ins_sum": 1500000,
+  "c_prev_claims": 1,
+  "c_more_info": false
+}
+
+> {% client.global.set("content_response", response.body); %}
+
+### Building insurance proposals
+POST http://127.0.0.1:9999/building/
+Content-Type: application/json
+
+{
+  "b_type_floor": 3,
+  "b_age": 15,
+  "b_water_coverage": 1,
+  "b_ins_sum": 1500000,
+  "b_prev_claims": 1,
+  "b_mortgage": 1,
+  "b_more_info": false
+}
+
+> {% client.global.set("building_response", response.body); %}
+
+### Full property insurance proposals
+POST http://127.0.0.1:9999/fullprop/
+Content-Type: application/json
+
+{
+  "f_type_floor": 3,
+  "fb_age": 15,
+  "f_water_coverage": 1,
+  "fb_ins_sum": 1500000,
+  "fb_prev_claims": 1,
+  "fc_ins_sum": 1500000,
+  "fc_prev_claims": 1,
+  "f_mortgage": 1,
+  "f_more_info": false
+}
+
+> {% client.global.set("fullprop_response", response.body); %}
+
+###
