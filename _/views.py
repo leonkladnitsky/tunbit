@@ -1,5 +1,7 @@
 import time
 import json
+import sys
+
 from django.http import JsonResponse
 from django.shortcuts import render
 from selenium import webdriver
@@ -13,7 +15,8 @@ FULLPROP_OFFER_URL = 'https://dira.cma.gov.il/Home/FillParameters?InsuranceType=
 def get_page(url):
     opts = Options()
     opts.headless = True
-    browser = webdriver.Chrome(options=opts)
+    executable_path = './chromedriver' if 'linux' in sys.platform else 'chromdriver.exe'
+    browser = webdriver.Chrome(executable_path=executable_path, options=opts)
     browser.get(url)
     time.sleep(1)
     return browser
