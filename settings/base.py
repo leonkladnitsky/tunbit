@@ -23,9 +23,9 @@ BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
 SECRET_KEY = 'tfso^rut6@d8#$&nffqte7^%+6j7qzdsec5g$luzllwb#a#3+e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*.aloni.org.il']
 
 # Application definition
 
