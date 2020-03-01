@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 from os import getenv, path
-from rest_framework import permissions
+# from rest_framework import permissions
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = path.dirname(path.abspath(__file__))
+BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -23,7 +23,7 @@ BASE_DIR = path.dirname(path.abspath(__file__))
 SECRET_KEY = 'tfso^rut6@d8#$&nffqte7^%+6j7qzdsec5g$luzllwb#a#3+e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -114,8 +114,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [path.join(BASE_DIR, 'static'),]
 STATIC_ROOT = ''
-MEDIA_URL = '/media/'
-MEDIA_ROOT = path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = path.join(BASE_DIR, 'media')
 
 MASTER_USR = 'leonline'
 MASTER_EML = 'leon.kladnitsky@gmail.com'
@@ -135,21 +135,25 @@ MASTER_LAST = 'Kladnitsky'
 #     # 'http://127.0.0.1:8888',
 # ]
 
-LOGGING = None
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'loggers': {
-#         'django': {
-#             'handlers': ['file'],
-#             'level': getenv('DJANGO_LOG_LEVEL', 'INFO'),
-#         },
-#     },
-#     'handlers': {
-#         'file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.FileHandler',
-#             'filename': 'logs/debug.log',
-#         },
-#     },
-# }
+# LOGGING = None
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'loggers': {
+        # 'django': {
+        #     'handlers': ['file'],
+        #     'level': getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        # },
+        '_': {
+            'handlers': ['file'],
+            'level': getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/debug.log',
+        },
+    },
+}
