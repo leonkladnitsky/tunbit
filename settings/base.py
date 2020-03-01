@@ -25,7 +25,7 @@ SECRET_KEY = 'tfso^rut6@d8#$&nffqte7^%+6j7qzdsec5g$luzllwb#a#3+e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*.aloni.org.il']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 

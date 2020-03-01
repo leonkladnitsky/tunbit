@@ -6,3 +6,4 @@ django-extensions==2.2.8
 selenium==3.141.0
 pytz==2019.3
 gitflow==0.5.1
+azure==4.0.0
