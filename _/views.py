@@ -5,7 +5,7 @@ import sys
 from django.http import JsonResponse
 from django.shortcuts import render
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import Options, DesiredCapabilities
 
 CONTENT_OFFER_URL = 'https://dira.cma.gov.il/Home/FillParameters?InsuranceType=Content'
 BUILDING_OFFER_URL = 'https://dira.cma.gov.il/Home/FillParameters?InsuranceType=Structure'
@@ -23,7 +23,9 @@ def get_page(url):
     #     options=opts,
     #     service_args=["--verbose", "--log-path=.\\chromedriver.log"]
     # )
-    browser = webdriver.Firefox(executable_path='./geckodriver', )
+    caps = DesiredCapabilities.FIREFOX.copy()
+    caps['marionette'] = False
+    browser = webdriver.Firefox(executable_path='./geckodriver', capabilities=caps, )
     browser.get(url)
     time.sleep(1)
     return browser
