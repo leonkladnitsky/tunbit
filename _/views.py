@@ -16,7 +16,11 @@ def get_page(url):
     opts = Options()
     opts.headless = True
     executable_path = './chromedriver' if 'linux' in sys.platform else 'chromdriver.exe'
-    browser = webdriver.Chrome(executable_path=executable_path, options=opts)
+    browser = webdriver.Chrome(
+        executable_path=executable_path,
+        options=opts,
+        service_args=['--verbose', '--log-path=.\\chromedriver.log']
+    )
     browser.get(url)
     time.sleep(1)
     return browser
