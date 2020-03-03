@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
@@ -112,8 +114,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [path.join(BASE_DIR, 'static'),]
-STATIC_ROOT = ''
+STATICFILES_DIRS = [path.join(BASE_DIR, 'static'), ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = path.join(BASE_DIR, 'collectstatic')
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = path.join(BASE_DIR, 'media')
 
@@ -135,25 +138,25 @@ MASTER_LAST = 'Kladnitsky'
 #     # 'http://127.0.0.1:8888',
 # ]
 
-# LOGGING = None
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'loggers': {
-        # 'django': {
-        #     'handlers': ['file'],
-        #     'level': getenv('DJANGO_LOG_LEVEL', 'INFO'),
-        # },
-        '_': {
-            'handlers': ['file'],
-            'level': getenv('DJANGO_LOG_LEVEL', 'INFO'),
-        },
-    },
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'logs/debug.log',
-        },
-    },
-}
+LOGGING = None
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'loggers': {
+#         # 'django': {
+#         #     'handlers': ['file'],
+#         #     'level': getenv('DJANGO_LOG_LEVEL', 'INFO'),
+#         # },
+#         '_': {
+#             'handlers': ['file'],
+#             'level': getenv('DJANGO_LOG_LEVEL', 'INFO'),
+#         },
+#     },
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': 'logs/debug.log',
+#         },
+#     },
+# }
