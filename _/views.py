@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options, DesiredCapabilities
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 CONTENT_OFFER_URL = 'https://dira.cma.gov.il/Home/FillParameters?InsuranceType=Content'
 BUILDING_OFFER_URL = 'https://dira.cma.gov.il/Home/FillParameters?InsuranceType=Structure'
@@ -13,19 +14,23 @@ FULLPROP_OFFER_URL = 'https://dira.cma.gov.il/Home/FillParameters?InsuranceType=
 
 
 def get_page(url):
-    # opts = Options()
-    # opts.headless = True
+    opts = Options()
+    opts.headless = True
     # opts.profile = None
-    # opts.binary = './geckodriver' if 'linux' in sys.platform else '.\\geckodriver.exe'
-    # browser = webdriver.Chrome(options=opts, service_args=['--verbose', '--log-path=.\\chromedriver.log'])
-    # browser = webdriver.Chrome(
-    #     executable_path=executable_path,
-    #     options=opts,
-    #     service_args=["--verbose", "--log-path=.\\chromedriver.log"]
-    # )
-    caps = DesiredCapabilities.FIREFOX.copy()
-    caps['marionette'] = False
-    browser = webdriver.Firefox(executable_path='./geckodriver', capabilities=caps, )
+    executable_path = './chromedriver' if 'linux' in sys.platform else 'chromdriver.exe'
+    browser = webdriver.Chrome(options=opts, executable_path=executable_path, service_args=['--verbose', '--log-path=.\\chromedriver.log'])
+    browser = webdriver.Chrome(
+        executable_path=executable_path,
+        options=opts,
+        service_args=["--verbose", "--log-path=.\\chromedriver.log"],
+    )
+
+    # caps = DesiredCapabilities.FIREFOX.copy()
+    # caps['marionette'] = False
+    # ff_b = FirefoxBinary(firefox_path='./firefox/firefox', log_file="./ff_binary.log")
+    # ff_p = webdriver.FirefoxProfile(profile_directory='./')
+    # browser = webdriver.Firefox(executable_path='./geckodriver', capabilities=caps, firefox_binary=ff_b, firefox_profile=ff_p, )
+
     browser.get(url)
     time.sleep(1)
     return browser
