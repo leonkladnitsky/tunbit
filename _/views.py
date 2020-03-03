@@ -5,7 +5,8 @@ import sys
 from django.http import JsonResponse
 from django.shortcuts import render
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options, DesiredCapabilities
+from selenium.webdriver.chrome.options import Options \
+    # , DesiredCapabilities
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 CONTENT_OFFER_URL = 'https://dira.cma.gov.il/Home/FillParameters?InsuranceType=Content'
@@ -16,14 +17,14 @@ FULLPROP_OFFER_URL = 'https://dira.cma.gov.il/Home/FillParameters?InsuranceType=
 def get_page(url):
     opts = Options()
     opts.headless = True
-    # opts.profile = None
-    executable_path = './chromedriver' if 'linux' in sys.platform else 'chromdriver.exe'
-    browser = webdriver.Chrome(options=opts, executable_path=executable_path, service_args=['--verbose', '--log-path=.\\chromedriver.log'])
-    browser = webdriver.Chrome(
-        executable_path=executable_path,
-        options=opts,
-        service_args=["--verbose", "--log-path=.\\chromedriver.log"],
-    )
+    cd_exec = './chromedriver'
+    # if 'linux' in sys.platform else 'chromdriver.exe'
+    browser = webdriver.Chrome(options=opts, executable_path=cd_exec, service_args=['--verbose', '--log-path=.\\chromedriver.log'])
+    # browser = webdriver.Chrome(
+    #     executable_path=cd_exec,
+    #     options=opts,
+    #     service_args=["--verbose", "--log-path=.\\chromedriver.log"],
+    # )
 
     # caps = DesiredCapabilities.FIREFOX.copy()
     # caps['marionette'] = False
