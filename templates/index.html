@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-<div id="uc_icon"><img src="{% static 'img/uc_icon.png' %}" title="Work in progress..."></div>
+<div id="uc_icon"><img alt="Under construction" src="{% static 'img/uc_icon.png' %}" title="Work in progress..."></div>
 <ul id="harbitTabs" class="nav nav-tabs nav-fill" role="tablist">
     <li class="nav-item">
         <a id="content-tab" href="#content" aria-controls="content" class="nav-link" role="tab" data-toggle="tab"
@@ -43,7 +43,7 @@
         <div class="fluid-container">
             <div class="row">
                 <form id="content_form" class="col-3">
-                    <br>
+                    {% csrf_token %}<br>
                     <div class="form-group">
                         <label for="c_type_floor">סוג מבנה וקומה</label>
                         <select id="c_type_floor" name="c_type_floor" class="form-control">
@@ -91,7 +91,7 @@
         <div class="fluid-container">
             <div class="row">
                 <form id="building_form" class="col-3">
-                    <br>
+                    {% csrf_token %}<br>
                     <div class="form-group">
                         <label for="b_type_floor">סוג מבנה וקומה</label>
                         <select id="b_type_floor" name="b_type_floor" class="form-control">
@@ -111,7 +111,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="b_ins_sum_range">סכום ביטוח</label>
+                        <label for="b_ins_sum">סכום ביטוח</label>
                         <label class="badge badge-secondary">₪</label>
                         <input id="b_ins_sum" name="b_ins_sum" type="number" class="form-control" min="10000"
                                step="10000"
@@ -150,7 +150,7 @@
                         <label class="form-control-label" for="b_more_info">פרטים נוספים</label>
                         <input id="b_more_info" name="b_more_info" type="checkbox" class="form-control-input"
                                style="margin: 1em;">
-                    <button type="button" id="get_prop_building" class="btn btn-primary">&gt;&gt;</button>
+                        <button type="button" id="get_prop_building" class="btn btn-primary">&gt;&gt;</button>
                     </div>
                 </form>
                 <div id="building_data" class="col">
@@ -162,7 +162,7 @@
         <div class="fluid-container">
             <div class="row">
                 <form id="fullprop_form" class="col-3">
-                    <br>
+                    {% csrf_token %}<br>
                     <div class="form-group">
                         <label for="f_type_floor">סוג מבנה וקומה</label>
                         <select id="f_type_floor" name="f_type_floor" class="form-control">
@@ -182,7 +182,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="fb_ins_sum_range">סכום ביטוח מבנה</label>
+                        <label for="fb_ins_sum">סכום ביטוח מבנה</label>
                         <label class="badge badge-secondary">₪</label>
                         <input id="fb_ins_sum" name="fb_ins_sum" type="number" class="form-control" min="10000"
                                step="10000"
@@ -210,7 +210,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="fc_ins_sum_range">סכום ביטוח תכולה</label>
+                        <label for="fc_ins_sum">סכום ביטוח תכולה</label>
                         <label class="badge badge-secondary">₪</label>
                         <input id="fc_ins_sum" name="fc_ins_sum" type="number" class="form-control" min="10000"
                                step="10000"
@@ -262,11 +262,29 @@
 <script src="{% static 'js/json-viewer.js' %}"></script>
 
 <script type="text/javascript">
-    $(document).ready(function (e) {
+
+    let csrftoken = $('[name=csrfmiddlewaretoken]').val();
+
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        /*
         if (location.pathname != '/') {
             console.log(location.pathname);
             location.pathname = '/';
         }
+        */
         let active_page = ('{{ page }}' || 'content');
         let active_tab = active_page + '-tab';
         $('#' + active_page).addClass('active').addClass('show');
@@ -282,6 +300,8 @@
             data[da[i].name] = Number(da[i].value);
         let more_info_id = form_id[1] + '_more_info';
         data[more_info_id] = $('#' + more_info_id).prop('checked');
+        data['csrfmiddlewaretoken'] = csrftoken;
+        {#data['csrfmiddlewaretoken'] = $(form_id).find('input[type="hidden"]').val();#}
 
         $.ajax({
             type: 'POST',
