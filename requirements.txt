@@ -1,10 +1,8 @@
-Django==2.2.13
+Django==2.2.10
 django-extensions==2.2.8
-# djangorestframework==3.11
-# django-debug-toolbar==2.1
-# django-cors-headers==3.2.1
 selenium==3.141.0
-pytz==2019.3
-gitflow==0.5.1
-# azure==4.0.0
-whitenoise==5.0.1
+bestcaptchasolverapi3==0.2
+# async==0.6.2
+# await==0.1.0
+Pillow==7.2.0
+requests==2.24.0

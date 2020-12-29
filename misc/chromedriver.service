@@ -1,0 +1,16 @@
+[Unit]
+Description=ChromeDriver service
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+Type=simple
+ExecStart=/usr/bin/chromedriver --port=5780 --log-path=/home/ubuntu/dev/tunbit/logs/chrmdrv.log --append-log --readable-timestamp
+Restart=always
+RestartSec=1
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

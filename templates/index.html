@@ -1,335 +1,151 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he">
 <head>
     <title>מנהרת ביטוח</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/harbit.png' %}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
-    <link rel="stylesheet" href="{% static 'css/construction.css' %}">
-    <link rel="stylesheet" href="{% static 'css/json-viewer.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static '/img/harbit.png' %}"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          crossorigin="anonymous" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm">
+    {#    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.0.0/css/bootstrap.min.css"#}
+    {#          crossorigin="anonymous" integrity="sha384-P4uhUIGk/q1gaD/NdgkBIl3a6QywJjlsFJFk7SPRdruoGddvRVSwv5qFnvZ73cpz">#}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'css/construction.css' %}">#}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/json-viewer.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-<div id="uc_icon"><img alt="Under construction" src="{% static 'img/uc_icon.png' %}" title="Work in progress..."></div>
+<input id="page_selector" type="hidden" value="{{ page }}">
 <ul id="harbitTabs" class="nav nav-tabs nav-fill" role="tablist">
     <li class="nav-item">
-        <a id="content-tab" href="#content" aria-controls="content" class="nav-link" role="tab" data-toggle="tab"
-           aria-selected="true">
-                <span class="fa-stack">
-                <i class="fa fa-diamond fa-2x"></i>
-                </span>&nbsp; תכולה</a>
+        <a id="content-tab" href="#content" aria-controls="content" class="nav-link" role="tab" data-toggle="tab" aria-selected="false">תכולה</a>
     </li>
     <li class="nav-item">
-        <a id="building-tab" href="#building" aria-controls="building" class="nav-link" role="tab" data-toggle="tab"
-           aria-selected="false">
-                 <span class="fa-stack">
-               <i class="fa fa-building-o fa-2x"></i>
-                </span>&nbsp;מבנה</a>
+        <a id="building-tab" href="#building" aria-controls="building" class="nav-link" role="tab" data-toggle="tab" aria-selected="false">מבנה</a>
     </li>
     <li class="nav-item">
-        <a id="fullprop-tab" href="#fullprop" aria-controls="fullprop" class="nav-link" role="tab" data-toggle="tab"
-           aria-selected="false">
-                <span class="fa-stack">
-                    <i class="fa fa-building fa-stack-2x"></i>
-                    <i class="fa fa-diamond fa-stack-1x fa-inverse" style="color: #696969;"></i>
-                </span>&nbsp;מבנה&nbsp;ותכולה</a>
+        <a id="fullprop-tab" href="#fullprop" aria-controls="fullprop" class="nav-link" role="tab" data-toggle="tab" aria-selected="false">מבנה ותכולה</a>
+    </li>
+    <li class="nav-item">
+        <a id="mortgage-tab" href="#mortgage" aria-controls="mortgage" class="nav-link" role="tab" data-toggle="tab" aria-selected="false">משכנתה</a>
+    </li>
+    <li class="nav-item">
+        <a id="life-tab" href="#life" aria-controls="life" class="nav-link" role="tab" data-toggle="tab" aria-selected="false">חיים</a>
+    </li>
+    <li class="nav-item">
+        <a id="health-tab" href="#health" aria-controls="health" class="nav-link" role="tab" data-toggle="tab" aria-selected="false">בריאות</a>
+    </li>
+    <li class="nav-item">
+        <a id="coverage-tab" href="#coverage" aria-controls="coverage" class="nav-link" role="tab" data-toggle="tab" aria-selected="false">כיסוים</a>
+    </li>
+    <li class="nav-item">
+        <a id="control-tab" href="#control" aria-controls="control" class="nav-link" role="tab" data-toggle="tab" aria-selected="false"><i class="fa fa-cogs"></i></a>
     </li>
 </ul>
-<div id="harBitContent" class="tab-content nav-fill" dir="rtl">
+<div id="harBitContent" class="tab-content nav-fill">
     <div id="content" class="tab-pane fade table-bordered" role="tabpanel" aria-labelledby="content-tab">
         <div class="fluid-container">
             <div class="row">
-                <form id="content_form" class="col-3">
-                    {% csrf_token %}<br>
-                    <div class="form-group">
-                        <label for="c_type_floor">סוג מבנה וקומה</label>
-                        <select id="c_type_floor" name="c_type_floor" class="form-control">
-                            <option value="1">בית פרטי</option>
-                            <option value="2">בית דו משפחתי</option>
-                            <option value="3">בניין משותף - קומת קרקע</option>
-                            <option value="4">בניין משותף - קומת ביניים</option>
-                            <option value="5">בניין משותף - קומה אחרונה</option>
-                            <option value="6">בניין משותף - קומת גג (פנטהאוז)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="c_ins_sum">סכום ביטוח</label>
-                        <label class="badge badge-secondary">₪</label>
-                        <input id="c_ins_sum" name="c_ins_sum" type="number" class="form-control" min="10000"
-                               step="10000"
-                               max="999999999" value="100000">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="c_prev_claims">תביעות האחרונות</label>
-                        <select id="c_prev_claims" name="c_prev_claims" class="form-control">
-                            <option value="1">ללא תביעות</option>
-                            <option value="2">תביעה אחת - בשנה האחרונה</option>
-                            <option value="3">תביעה אחת - לפני שנה</option>
-                            <option value="4">תביעה אחת - לפני שנתיים</option>
-                            <option value="5">שתי תביעות ויותר- בשלוש השנים האחרונות</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-check">
-                        <label class="form-control-label" for="c_more_info">פרטים נוספים</label>
-                        <input id="c_more_info" name="c_more_info" type="checkbox" class="form-control-input"
-                               style="margin: 1em;">
-                        <button type="button" id="get_prop_content" class="btn btn-success">&gt;&gt;</button>
-                    </div>
-                </form>
-                <div id="content_data" class="col">
+                <div id="content_data" class="data-holder col-9 text-center" data-tab="#content-tab">
+                    <button type="button" class="btn btn-block btn-dark send">לבדוק הצעות</button>
+                    <label class="timer badge badge-secondary"></label>
                 </div>
+                {% include 'content_form.html' %}
             </div>
         </div>
     </div>
     <div id="building" class="tab-pane fade table-bordered" role="tabpanel" aria-labelledby="building-tab">
         <div class="fluid-container">
             <div class="row">
-                <form id="building_form" class="col-3">
-                    {% csrf_token %}<br>
-                    <div class="form-group">
-                        <label for="b_type_floor">סוג מבנה וקומה</label>
-                        <select id="b_type_floor" name="b_type_floor" class="form-control">
-                            <option value="1">בית פרטי</option>
-                            <option value="2">בית דו משפחתי</option>
-                            <option value="3">בניין משותף - קומת קרקע</option>
-                            <option value="4">בניין משותף - קומת ביניים</option>
-                            <option value="5">בניין משותף - קומה אחרונה</option>
-                            <option value="6">בניין משותף - קומת גג (פנטהאוז)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="b_age">גיל המבנה</label>
-                        <input id="b_age" name="b_age" type="number" class="form-control" min="1" step="1" max="99"
-                               value="1">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="b_ins_sum">סכום ביטוח</label>
-                        <label class="badge badge-secondary">₪</label>
-                        <input id="b_ins_sum" name="b_ins_sum" type="number" class="form-control" min="10000"
-                               step="10000"
-                               max="999999999" value="100000">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="b_water_coverage">כיסוי לנזקי מים</label>
-                        <select id="b_water_coverage" name="b_water_coverage" class="form-control">
-                            <option value="0">שרברב מטעם חברת הביטוח</option>
-                            <option value="1">שרברב לבחירת המבוטח</option>
-                            <option value="2">ללא כיסוי כלל</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="b_prev_claims">תביעות האחרונות</label>
-                        <select id="b_prev_claims" name="b_prev_claims" class="form-control">
-                            <option value="1">ללא תביעות</option>
-                            <option value="2">תביעה אחת - בשנה האחרונה</option>
-                            <option value="3">תביעה אחת - לפני שנה</option>
-                            <option value="4">תביעה אחת - לפני שנתיים</option>
-                            <option value="5">שתי תביעות ויותר- בשלוש השנים האחרונות</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="b_mortgage">כיסוי לנזקי מים</label>
-                        <select id="b_mortgage" name="b_mortgage" class="form-control">
-                            <option value="1">לא</option>
-                            <option value="2">כן</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-check">
-                        <label class="form-control-label" for="b_more_info">פרטים נוספים</label>
-                        <input id="b_more_info" name="b_more_info" type="checkbox" class="form-control-input"
-                               style="margin: 1em;">
-                        <button type="button" id="get_prop_building" class="btn btn-primary">&gt;&gt;</button>
-                    </div>
-                </form>
-                <div id="building_data" class="col">
+                <div id="building_data" class="data-holder col-9 text-center" data-tab="#building-tab">
+                    <button type="button" class="btn btn-block btn-dark send">לבדוק הצעות</button>
+                    <label class="timer badge badge-secondary"></label>
                 </div>
+                {% include 'building_form.html' %}
             </div>
         </div>
     </div>
     <div id="fullprop" class="tab-pane fade table-bordered" role="tabpanel" aria-labelledby="fullprop-tab">
         <div class="fluid-container">
             <div class="row">
-                <form id="fullprop_form" class="col-3">
-                    {% csrf_token %}<br>
-                    <div class="form-group">
-                        <label for="f_type_floor">סוג מבנה וקומה</label>
-                        <select id="f_type_floor" name="f_type_floor" class="form-control">
-                            <option value="1">בית פרטי</option>
-                            <option value="2">בית דו משפחתי</option>
-                            <option value="3">בניין משותף - קומת קרקע</option>
-                            <option value="4">בניין משותף - קומת ביניים</option>
-                            <option value="5">בניין משותף - קומה אחרונה</option>
-                            <option value="6">בניין משותף - קומת גג (פנטהאוז)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="fb_age">גיל המבנה</label>
-                        <input id="fb_age" name="fb_age" type="number" class="form-control" min="1" step="1" max="99"
-                               value="1">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="fb_ins_sum">סכום ביטוח מבנה</label>
-                        <label class="badge badge-secondary">₪</label>
-                        <input id="fb_ins_sum" name="fb_ins_sum" type="number" class="form-control" min="10000"
-                               step="10000"
-                               max="999999999" value="100000">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="f_water_coverage">כיסוי לנזקי מים</label>
-                        <select id="f_water_coverage" name="f_water_coverage" class="form-control">
-                            <option value="0">שרברב מטעם חברת הביטוח</option>
-                            <option value="1">שרברב לבחירת המבוטח</option>
-                            <option value="2">ללא כיסוי כלל</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="fb_prev_claims">תביעות האחרונות מבנה</label>
-                        <select id="fb_prev_claims" name="fb_prev_claims" class="form-control">
-                            <option value="1">ללא תביעות</option>
-                            <option value="2">תביעה אחת - בשנה האחרונה</option>
-                            <option value="3">תביעה אחת - לפני שנה</option>
-                            <option value="4">תביעה אחת - לפני שנתיים</option>
-                            <option value="5">שתי תביעות ויותר- בשלוש השנים האחרונות</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="fc_ins_sum">סכום ביטוח תכולה</label>
-                        <label class="badge badge-secondary">₪</label>
-                        <input id="fc_ins_sum" name="fc_ins_sum" type="number" class="form-control" min="10000"
-                               step="10000"
-                               max="999999999" value="100000">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="f_mortgage">ביטוח לצורך משכנתה</label>
-                        <select id="f_mortgage" name="f_mortgage" class="form-control">
-                            <option value="1">לא</option>
-                            <option value="2">כן</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="fc_prev_claims">תביעות האחרונות תכולה</label>
-                        <select id="fc_prev_claims" name="fc_prev_claims" class="form-control">
-                            <option value="1">ללא תביעות</option>
-                            <option value="2">תביעה אחת - בשנה האחרונה</option>
-                            <option value="3">תביעה אחת - לפני שנה</option>
-                            <option value="4">תביעה אחת - לפני שנתיים</option>
-                            <option value="5">שתי תביעות ויותר- בשלוש השנים האחרונות</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-check">
-                        <label class="form-control-label" for="f_more_info">פרטים נוספים</label>
-                        <input id="f_more_info" name="f_more_info" type="checkbox" class="form-control-input"
-                               style="margin: 1em;">
-                        <button type="button" id="get_prop_fullprop" class="btn btn-danger">&gt;&gt;</button>
-                    </div>
-                </form>
-                <div id="fullprop_data" class="col">
+                <div id="fullprop_data" class="data-holder col-9 text-center" data-tab="#fullprop-tab">
+                    <button type="button" class="btn btn-block btn-dark send">לבדוק הצעות</button>
+                    <label class="timer badge badge-secondary"></label>
                 </div>
+                {% include 'fullprop_form.html' %}
+            </div>
+        </div>
+    </div>
+    <div id="mortgage" class="tab-pane fade table-bordered" role="tabpanel" aria-labelledby="mortgage-tab">
+        <div class="fluid-container">
+            <div class="row">
+                <div id="mortgage_data" class="data-holder col-9 text-center" data-tab="#mortgage-tab">
+                    <button type="button" class="btn btn-block btn-dark send">לבדוק הצעות</button>
+                    <label class="timer badge badge-secondary"></label>
+                </div>
+                {% include 'mortgage_form.html' %}
+            </div>
+        </div>
+    </div>
+    <div id="life" class="tab-pane fade table-bordered" role="tabpanel" aria-labelledby="life-tab">
+        <div class="fluid-container">
+            <div class="row">
+                <div id="life_data" class="data-holder col-9 text-center" data-tab="#life-tab">
+                    <button type="button" class="btn btn-block btn-dark send">לבדוק הצעות</button>
+                    <label class="timer badge badge-secondary"></label>
+                </div>
+                {% include 'life_form.html' %}
+            </div>
+        </div>
+    </div>
+    <div id="health" class="tab-pane fade table-bordered" role="tabpanel" aria-labelledby="health-tab">
+        <div class="fluid-container">
+            <div class="row">
+                <div id="health_data" class="data-holder col-9 text-center" data-tab="#health-tab">
+                    <button type="button" class="btn btn-block btn-dark send">לבדוק הצעות</button>
+                    <label class="timer badge badge-secondary"></label>
+                </div>
+                {% include 'health_form.html' %}
+            </div>
+        </div>
+    </div>
+    <div id="coverage" class="tab-pane fade table-bordered" role="tabpanel" aria-labelledby="coverage-tab">
+        <div class="fluid-container">
+            <div class="row">
+                <div id="coverage_data" class="data-holder col-9 text-center" data-tab="#coverage-tab">
+                    <button type="button" class="btn btn-block btn-dark send">לבדוק כיסויים</button>
+                    <label class="timer badge badge-secondary"></label>
+                </div>
+                {% include 'coverage_form.html' %}
+            </div>
+        </div>
+    </div>
+    <div id="control" class="tab-pane fade table-bordered" role="tabpanel" aria-labelledby="control-tab">
+        <div class="fluid-container">
+            <div class="row">
+                <div id="control_data" class="data-holder col-9 text-center" data-tab="#control-tab">
+                    <button type="button" class="btn btn-block btn-dark send logs">See logs</button>
+                    <label class="timer badge badge-secondary"></label>
+                </div>
+								{% include 'control_form.html' %}
             </div>
         </div>
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-<script src="{% static 'js/json-viewer.js' %}"></script>
-
-<script type="text/javascript">
-
-    let csrftoken = $('[name=csrfmiddlewaretoken]').val();
-
-    function csrfSafeMethod(method) {
-        // these HTTP methods do not require CSRF protection
-        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-    }
-
-    $.ajaxSetup({
-        beforeSend: function (xhr, settings) {
-            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                xhr.setRequestHeader("X-CSRFToken", csrftoken);
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        /*
-        if (location.pathname != '/') {
-            console.log(location.pathname);
-            location.pathname = '/';
-        }
-        */
-        let active_page = ('{{ page }}' || 'content');
-        let active_tab = active_page + '-tab';
-        $('#' + active_page).addClass('active').addClass('show');
-        $('#' + active_tab).addClass('active');
-    });
-
-    let get_proposal = function (e, form_id, url, res_elem_id) {
-        e.preventDefault();
-        $(res_elem_id).html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>');
-        let da = $(form_id).serializeArray();
-        let data = {};
-        for (let i = 0; i < da.length; i++)
-            data[da[i].name] = Number(da[i].value);
-        let more_info_id = form_id[1] + '_more_info';
-        data[more_info_id] = $('#' + more_info_id).prop('checked');
-        data['csrfmiddlewaretoken'] = csrftoken;
-        {#data['csrfmiddlewaretoken'] = $(form_id).find('input[type="hidden"]').val();#}
-
-        $.ajax({
-            type: 'POST',
-            async: true,
-            url: url,
-            data: JSON.stringify(data),
-            cache: false,
-            contentType: false,
-            processData: false
-        }).fail(function (response) {
-            console.debug(response);
-        }).done(function (response) {
-            let jsonViewer = new JSONViewer();
-            $(res_elem_id).html('').append(jsonViewer.getContainer());
-            jsonViewer.showJSON(response.data, -1, 1);
-        });
-        return false;
-    };
-
-    $('#get_prop_content').on('click', function (e) {
-        get_proposal(e, '#content_form', '/content/', '#content_data');
-    });
-    $('#get_prop_building').on('click', function (e) {
-        get_proposal(e, '#building_form', '/building/', '#building_data');
-    });
-    $('#get_prop_fullprop').on('click', function (e) {
-        get_proposal(e, '#fullprop_form', '/fullprop/', '#fullprop_data');
-    });
-</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"
+        crossorigin="anonymous"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        crossorigin="anonymous"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        crossorigin="anonymous"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"></script>
+{#<script type="text/javascript" src="https://cdn.rtlcss.com/bootstrap/v4.0.0/js/bootstrap.min.js"#}
+{#        crossorigin="anonymous"#}
+{#        integrity="sha384-54+cucJ4QbVb99v8dcttx/0JRx4FHMmhOWi4W+xrXpKcsKQodCBwAvu3xxkZAwsH"></script>#}
+<script type="text/javascript" src="{% static 'js/json-viewer.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 </body>
 </html>

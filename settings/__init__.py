@@ -1,22 +1,19 @@
 # -*- coding: utf-8 -*-
-import logging
-import sys
+from logging import getLogger
 
-logging.basicConfig()
-
-log = logging.getLogger(__name__)
+logger = getLogger(__name__)
 
 try:
     from .base import *
 except ImportError:
-    log.warning('base settings NOT imported')
+    logger.error('base settings NOT imported !!!')
+    pass
 
 try:
     from .dev import *
 except ImportError:
-    if DEBUG:
-        log.warning('dev settings NOT imported')
+    logger.warning('dev settings NOT imported')
     pass
 else:
-    if DEBUG:
-        log.warning('-=* DEV *=-')
+    logger.info('-=* DEV *=-')
+    pass

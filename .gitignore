@@ -23,7 +23,6 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-.Python
 build/
 develop-eggs/
 dist/
@@ -71,11 +70,12 @@ coverage.xml
 *.pot
 
 # Django stuff:
-/logs/*
+/**/*.log
 /collectstatic/*
 *.log
-settings/dev*.py
-db.sqlite3*
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
 
 # Flask stuff:
 instance/
@@ -115,7 +115,6 @@ celerybeat-schedule
 
 # Environments
 .env
-.venv
 env/
 venv/
 ENV/
@@ -147,6 +146,8 @@ dmypy.json
 # User-specific stuff
 .idea/
 .idea/*
+.idea/**/*
+
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,
 # since they will be recreated, and may cause churn.  Uncomment if using
@@ -161,7 +162,7 @@ dmypy.json
 cmake-build-*/
 
 # Mongo Explorer plugin
-.idea/**/mongoSettings.xml
+.idea/
 
 # File-based project format
 *.iws
@@ -175,20 +176,12 @@ out/
 # JIRA plugin
 atlassian-ide-plugin.xml
 
-# Cursive Clojure plugin
-.idea/replstate.xml
-
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-# Editor-based Rest Client
-.idea/httpRequests
-
-# Android studio 3.1+ serialized cache file
-.idea/caches/build_file_checksums.ser
 
 ### Windows template
 # Windows thumbnail cache files
@@ -215,3 +208,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+/settings/dev.py
+/setup
+/keys/secret.txt
+/keys/secret
