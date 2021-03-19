@@ -4,5 +4,5 @@ selenium==3.141.0
 bestcaptchasolverapi3==0.2
 # async==0.6.2
 # await==0.1.0
-Pillow==7.2.0
+Pillow==8.1.1
 requests==2.24.0
